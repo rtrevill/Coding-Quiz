@@ -3,6 +3,8 @@ var answers = document.querySelectorAll("#options li");
 var H1 = document.querySelector('h1');
 var qBox = document.querySelector('#quiz-box');
 
+
+
 function Countdown(){
 
 var timer=75;
@@ -43,12 +45,22 @@ function askQuestions(){
         answers[1].textContent = questions[i].Answer2;
         answers[2].textContent = questions[i].Answer3;
         answers[3].textContent = questions[i].Answer4;
+        var correctAnswer = questions[i].Correct;
+        
         qBox.addEventListener('click', function(event){
-            if 
+            var element = event.target;
+            
+            if (element.textContent===correctAnswer){
+                console.log("Correct!!")
+                
+            }
+            })
 
-        })
-    }
-}
+            }
+
+        }
+    
+
 
 
 
