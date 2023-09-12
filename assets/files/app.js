@@ -3,7 +3,13 @@ var answers = document.querySelectorAll("#options li");
 var H1 = document.querySelector('h1');
 var qBox = document.querySelector('#quiz-box');
 var score=0;
-var loop=true;
+var loopy=true;
+var i= 0;
+var win= 0;
+var lose = 0;
+var counter = 0;
+var newcounter = 0;
+console.log(win, lose);
 
 
 function Countdown(){
@@ -46,65 +52,75 @@ var questions = [
 
 }
 ]
-var i= 1;
-var win= 0;
-var lose = 0;
-var counter = 0;
-var newcounter = 0;
-console.log(win, lose);
 
+function askQuestions(){
+        
+    H1.innerHTML = questions[i].Question;
+    answers[0].innerHTML = questions[i].Answer1;
+    answers[1].innerHTML = questions[i].Answer2;
+    answers[2].innerHTML = questions[i].Answer3;
+    answers[3].innerHTML = questions[i].Answer4;
+    // var correctAnswer = questions[i].Correct;
+};
 
 // console.log(win, lose);
 // console.log(i);
 // askQuestions();
 // console.log(win, lose);
 // console.log(i);
-
-
-function askQuestions(){
-// for (i=0; i<questions.length; i++){    
-        var loop=false;
-        H1.textContent = questions[i].Question;
-        answers[0].textContent = questions[i].Answer1;
-        answers[1].textContent = questions[i].Answer2;
-        answers[2].textContent = questions[i].Answer3;
-        answers[3].textContent = questions[i].Answer4;
-        var correctAnswer = questions[i].Correct;
-       
-     
- 
-    }
-
-    qBox.addEventListener("click", function(event){
-        element = event.target;
-        var eventLoop = false; 
-         console.log(i); 
-            while (eventLoop===false){
-                if (element.matches('li')){
-                    if (element.textContent===correctAnswer){
-                        console.log("Correct!!");
-                        eventLoop = true;
-                        i++
-                        newcounter++
-                        return ++win;  
-                        }
-                    else if (element.textContent!==correctAnswer){
-                        console.log("Incorrect!!");
-                        eventLoop = true;  
-                        i++;
-                        newcounter++;
-                        return ++lose;                 
-                         }
-                }
-            }
-            
-    })   
-// }
+// while ((loopy===true)&&(i<questions.length)){
+// loopy=false;
 
 askQuestions();
-if (newcounter>counter){
-    i++;
-    counter++;
-    askQuestions();}
-console.log(i);
+ 
+var correctOrNo = qBox.addEventListener("click", function(event){
+                var correctAnswer = questions[i].Correct;   
+                    console.log(correctAnswer);
+                    element = event.target;
+                    var eventLoop = false; 
+                    console.log(i); 
+                        while (eventLoop===false){
+                            if (element.matches('li')){
+                                if (element.textContent===correctAnswer){
+                                    console.log("Correct!!");
+                                    eventLoop = true;
+                                    i++;
+                                    newcounter++;
+                                    ++win
+                                    loopy=true;
+                                    console.log("Wins: "+win);
+                                    console.log("Losses: "+lose);
+                                    askQuestions();
+                                    return;
+                                     
+                                    }
+                                else if (element.textContent!==correctAnswer){
+                                    console.log("Incorrect!!");
+                                    eventLoop = true;  
+                                    i++;
+                                    newcounter++;
+                                    ++lose
+                                    loopy=true;
+                                    console.log("Wins: "+win);
+                                    console.log("Losses: "+lose);
+                                    askQuestions();
+                                    return;
+                                                    
+                                    }
+                                   
+                            }
+                        }
+                        
+                }) 
+   
+// }
 
+// }
+
+// do{
+// askQuestions(i);
+// if (newcounter>counter){
+//     i++;
+//     counter++;}
+// console.log(i, newcounter, counter);
+// }while(newcounter>counter);
