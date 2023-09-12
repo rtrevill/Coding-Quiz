@@ -2,28 +2,31 @@ var timeEl = document.getElementById('timer');
 var answers = document.querySelectorAll("#options li");
 var H1 = document.querySelector('h1');
 var qBox = document.querySelector('#quiz-box');
+var listDivs = document.querySelector('.list-item-container')
 var score=0;
 var i= 0;
 var win= 0;
 var lose = 0;
 var newcounter = 0;
+var timer=75;
+var footResult = document.getElementById('result');
 console.log(win, lose);
 
 
 function Countdown(){
-
-var timer=75;
 var timerRunning = setInterval(function() {
     timer--
     timeEl.textContent = "Time: "+timer;
     
-    if (timer===0){
+    if (timer<=0){
         clearInterval(timerRunning);
-
+        qBox.setAttribute("display", "none");
+        listDivs.setAttribute('display', 'none'); 
     }
 }, 1000);
-
 }
+
+
 Countdown()
 
 var questions = [
@@ -41,13 +44,33 @@ var questions = [
     Answer4:    "Plover",
     Correct:    "King Parrot"
 },
-{   Question:  "Best Season",
-    Answer1:    "Summer",
-    Answer2:    "Spring",
-    Answer3:    "Autumn",
-    Answer4:    "Winter",
-    Correct:    "Autumn"
-
+{   Question:  "What is 10 plus 2",
+    Answer1:    "14",
+    Answer2:    "8",
+    Answer3:    "5",
+    Answer4:    "12",
+    Correct:    "12"
+},
+{   Question:  "What sport do the Soceroos play?",
+    Answer1:    "Handball",
+    Answer2:    "Soccer",
+    Answer3:    "Table Tennis",
+    Answer4:    "Diving",
+    Correct:    "Soccer"
+},
+{   Question:  "What do trees do?",
+    Answer1:    "Make oxygen",
+    Answer2:    "Cool and provide shade",
+    Answer3:    "Improve soil",
+    Answer4:    "All of the above",
+    Correct:    "All of the above"
+},
+{   Question:  "Which is the best Die Hard movie?",
+    Answer1:    "Die Hard",
+    Answer2:    "Die Hard 2",
+    Answer3:    "Die Hard With A Vengeance",
+    Answer4:    "Live Free or Die Hard",
+    Correct:    "Die Hard"
 }
 ]
 
@@ -76,6 +99,8 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
                     win++
                     console.log("Wins: "+win);
                     console.log("Losses: "+lose);
+                    footResult.innerText="Correct!!";
+                    listDivs.style.display='none';
                     askQuestions();
                     return;
                         
@@ -87,12 +112,13 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
                     lose++
                     console.log("Wins: "+win);
                     console.log("Losses: "+lose);
-                    if (i<questions.length-1){
-                        askQuestions();}
+                    timer-=15;
+                    footResult.innerText="Wrong!!";
+                        askQuestions();
                     return;
                     }
                     
-                // }
+               
             }
         
 }) 
