@@ -3,11 +3,9 @@ var answers = document.querySelectorAll("#options li");
 var H1 = document.querySelector('h1');
 var qBox = document.querySelector('#quiz-box');
 var score=0;
-var loopy=true;
 var i= 0;
 var win= 0;
 var lose = 0;
-var counter = 0;
 var newcounter = 0;
 console.log(win, lose);
 
@@ -60,67 +58,43 @@ function askQuestions(){
     answers[1].innerHTML = questions[i].Answer2;
     answers[2].innerHTML = questions[i].Answer3;
     answers[3].innerHTML = questions[i].Answer4;
-    // var correctAnswer = questions[i].Correct;
 };
 
-// console.log(win, lose);
-// console.log(i);
-// askQuestions();
-// console.log(win, lose);
-// console.log(i);
-// while ((loopy===true)&&(i<questions.length)){
-// loopy=false;
 
 askQuestions();
- 
-var correctOrNo = qBox.addEventListener("click", function(event){
-                var correctAnswer = questions[i].Correct;   
-                    console.log(correctAnswer);
-                    element = event.target;
-                    var eventLoop = false; 
-                    console.log(i); 
-                        while (eventLoop===false){
-                            if (element.matches('li')){
-                                if (element.textContent===correctAnswer){
-                                    console.log("Correct!!");
-                                    eventLoop = true;
-                                    i++;
-                                    newcounter++;
-                                    ++win
-                                    loopy=true;
-                                    console.log("Wins: "+win);
-                                    console.log("Losses: "+lose);
-                                    askQuestions();
-                                    return;
-                                     
-                                    }
-                                else if (element.textContent!==correctAnswer){
-                                    console.log("Incorrect!!");
-                                    eventLoop = true;  
-                                    i++;
-                                    newcounter++;
-                                    ++lose
-                                    loopy=true;
-                                    console.log("Wins: "+win);
-                                    console.log("Losses: "+lose);
-                                    askQuestions();
-                                    return;
-                                                    
-                                    }
-                                   
-                            }
-                        }
+
+var usersChoice = qBox.addEventListener("click", function listener(event){
+    var correctAnswer = questions[i].Correct;   
+    console.log(correctAnswer);
+    element = event.target;
+    console.log(i); 
+            if (element.matches('li')){
+                if (element.textContent===correctAnswer){
+                    console.log("Correct!!");
+                    i++;
+                    newcounter++;
+                    win++
+                    console.log("Wins: "+win);
+                    console.log("Losses: "+lose);
+                    askQuestions();
+                    return;
                         
-                }) 
-   
-// }
+                    }
+                else if (element.textContent!==correctAnswer){
+                    console.log("Incorrect!!");
+                    i++;
+                    newcounter++;
+                    lose++
+                    console.log("Wins: "+win);
+                    console.log("Losses: "+lose);
+                    if (i<questions.length-1){
+                        askQuestions();}
+                    return;
+                    }
+                    
+                // }
+            }
+        
+}) 
+ 
 
-// }
-
-// do{
-// askQuestions(i);
-// if (newcounter>counter){
-//     i++;
-//     counter++;}
-// console.log(i, newcounter, counter);
-// }while(newcounter>counter);
