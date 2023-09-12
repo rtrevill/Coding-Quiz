@@ -2,7 +2,8 @@ var timeEl = document.getElementById('timer');
 var answers = document.querySelectorAll("#options li");
 var H1 = document.querySelector('h1');
 var qBox = document.querySelector('#quiz-box');
-
+var score=0;
+var loop=true;
 
 
 function Countdown(){
@@ -35,33 +36,75 @@ var questions = [
     Answer3:    "King Parrot",
     Answer4:    "Plover",
     Correct:    "King Parrot"
+},
+{   Question:  "Best Season",
+    Answer1:    "Summer",
+    Answer2:    "Spring",
+    Answer3:    "Autumn",
+    Answer4:    "Winter",
+    Correct:    "Autumn"
+
 }
 ]
+var i= 1;
+var win= 0;
+var lose = 0;
+var counter = 0;
+var newcounter = 0;
+console.log(win, lose);
+
+
+// console.log(win, lose);
+// console.log(i);
+// askQuestions();
+// console.log(win, lose);
+// console.log(i);
+
 
 function askQuestions(){
-    for (i=0; i<questions.length; i++){
+// for (i=0; i<questions.length; i++){    
+        var loop=false;
         H1.textContent = questions[i].Question;
         answers[0].textContent = questions[i].Answer1;
         answers[1].textContent = questions[i].Answer2;
         answers[2].textContent = questions[i].Answer3;
         answers[3].textContent = questions[i].Answer4;
         var correctAnswer = questions[i].Correct;
-        
-        qBox.addEventListener('click', function(event){
-            var element = event.target;
+       
+     
+ 
+    }
+
+    qBox.addEventListener("click", function(event){
+        element = event.target;
+        var eventLoop = false; 
+         console.log(i); 
+            while (eventLoop===false){
+                if (element.matches('li')){
+                    if (element.textContent===correctAnswer){
+                        console.log("Correct!!");
+                        eventLoop = true;
+                        i++
+                        newcounter++
+                        return ++win;  
+                        }
+                    else if (element.textContent!==correctAnswer){
+                        console.log("Incorrect!!");
+                        eventLoop = true;  
+                        i++;
+                        newcounter++;
+                        return ++lose;                 
+                         }
+                }
+            }
             
-            if (element.textContent===correctAnswer){
-                console.log("Correct!!")
-                
-            }
-            })
+    })   
+// }
 
-            }
+askQuestions();
+if (newcounter>counter){
+    i++;
+    counter++;
+    askQuestions();}
+console.log(i);
 
-        }
-    
-
-
-
-
-askQuestions()
