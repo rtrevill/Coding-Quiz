@@ -8,6 +8,7 @@
 
 #quiz-box {
 display: flex;
+flex-wrap: wrap;
 flex-direction: column;
 justify-content: center;
 align-content: flex-end;
@@ -36,6 +37,7 @@ ol {
     margin: 10px 0px;
     color: white;
     border-radius: 12px;
+    
     }
 
 .list-item-container:active{
@@ -46,4 +48,8 @@ ol {
 li {
     margin: 0 20px;
     line-height: 50px;
+}
+
+.invis {
+    display: none;
 }

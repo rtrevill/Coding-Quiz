@@ -2,7 +2,7 @@ var timeEl = document.getElementById('timer');
 var answers = document.querySelectorAll("#options li");
 var H1 = document.querySelector('h1');
 var qBox = document.querySelector('#quiz-box');
-var listDivs = document.querySelector('.list-item-container')
+var listDivs = document.querySelectorAll('.list-item-container')
 var score=0;
 var i= 0;
 var win= 0;
@@ -10,24 +10,48 @@ var lose = 0;
 var newcounter = 0;
 var timer=75;
 var footResult = document.getElementById('result');
+var introText = document.querySelector('#intro-text');
+var startButton = document.getElementById('start-game');
+var endGame = document.querySelector('form');
 console.log(win, lose);
 
+
+function beforeStart(){
+    H1.innerText = "Welcome to the Quiz Game"
+    introText.innerText = "Try to answer all the questions to get the job. If you run out of time, or score a poor mark you will be expelled ungraciously. Good Luck."
+    startButton.innerText = "Press to start"
+}
+
+beforeStart()
+
+var startGame = startButton.addEventListener("click", function(event){
+    introText.classList.add('invis');
+    startButton.classList.add('invis');
+    Countdown();
+    askQuestions();
+
+})
 
 function Countdown(){
 var timerRunning = setInterval(function() {
     timer--
     timeEl.textContent = "Time: "+timer;
-    
-    if (timer<=0){
+    for (var m=0; m<4; m++){
+            listDivs[m].classList.remove('invis');
+        }
+    if ((timer<=0)||(newcounter===questions.length)){
+        console.log("Newcounter: "+newcounter);
         clearInterval(timerRunning);
-        qBox.setAttribute("display", "none");
-        listDivs.setAttribute('display', 'none'); 
+        for (var m=0; m<4; m++){
+            listDivs[m].classList.add('invis');
+        }
+    endOfGame(); 
     }
 }, 1000);
 }
 
 
-Countdown()
+
 
 var questions = [
 {   Question:  "What color is yellow?",
@@ -84,14 +108,14 @@ function askQuestions(){
 };
 
 
-askQuestions();
+
 
 var usersChoice = qBox.addEventListener("click", function listener(event){
     var correctAnswer = questions[i].Correct;   
     console.log(correctAnswer);
     element = event.target;
     console.log(i); 
-            if (element.matches('li')){
+            if (element.matches('li')&&(timer>0)&&(newcounter<questions.length)){
                 if (element.textContent===correctAnswer){
                     console.log("Correct!!");
                     i++;
@@ -100,7 +124,7 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
                     console.log("Wins: "+win);
                     console.log("Losses: "+lose);
                     footResult.innerText="Correct!!";
-                    listDivs.style.display='none';
+                    // listDivs.style.display='none';
                     askQuestions();
                     return;
                         
@@ -114,7 +138,7 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
                     console.log("Losses: "+lose);
                     timer-=15;
                     footResult.innerText="Wrong!!";
-                        askQuestions();
+                    askQuestions();
                     return;
                     }
                     
@@ -124,3 +148,11 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
 }) 
  
 
+function endOfGame() {
+    H1.innerText = "Game Over!!";
+    introText.classList.toggle('invis');
+    introText.innerText = ("you scored "+win+" points");
+    endGame.classList.toggle('invis');
+    var initials = document.getElementById('initials');
+    console.log(initials);
+}
