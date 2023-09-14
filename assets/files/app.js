@@ -153,16 +153,16 @@ function postScore(score){
     console.log(score.Score);
     var doubleS = score.Score;
     var gameScore;
-    if (sessionStorage.getItem("Score")===null){
+    if (localStorage.getItem("Score")===null){
        gameScore = [];
        gameScore.push(score);
        console.log(gameScore);
     }
     else{
-        gameScore = JSON.parse(sessionStorage.getItem("Score"));
+        gameScore = JSON.parse(localStorage.getItem("Score"));
         
             function topScore(prevScores){
-                return prevScores.Score >doubleS;   
+                return prevScores.Score > doubleS;   
              }
              function moreScore(prevScores){
                 return prevScores.Score === doubleS;
@@ -173,13 +173,13 @@ function postScore(score){
             if (positionOf===-1){
                 gameScore.push(score);
             }
-            else if ((positionOf!==-1)&&(justUnder>0)){
-                gameScore.splice(justUnder,0,score);
+            else if ((positionOf!==-1)){
+                gameScore.splice(positionOf,0,score);
             }
             else {
                 gameScore.unshift(score);
             }
-        
+            // &&(justUnder>-1)
      if (gameScore.length > 10){
             gameScore.shift();
       }
@@ -188,7 +188,7 @@ function postScore(score){
 
     
     console.log(gameScore);
-    sessionStorage.setItem("Score", JSON.stringify(gameScore));
+    localStorage.setItem("Score", JSON.stringify(gameScore));
 }
 
 
