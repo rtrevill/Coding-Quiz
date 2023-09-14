@@ -162,27 +162,27 @@ function postScore(score){
         gameScore = JSON.parse(sessionStorage.getItem("Score"));
         
             function topScore(prevScores){
-                return prevScores.Score ===doubleS;   
+                return prevScores.Score >doubleS;   
              }
              function moreScore(prevScores){
-                return prevScores.Score >doubleS;
+                return prevScores.Score === doubleS;
              }
                 var positionOf = (gameScore.findIndex(topScore));
                 var justUnder = (gameScore.findIndex(moreScore));
                 console.log(positionOf, justUnder);
-            if (moreScore===-1){
+            if (positionOf===-1){
                 gameScore.push(score);
             }
-            else if ((moreScore!==-1)&&(topScore>0)){
+            else if ((positionOf!==-1)&&(justUnder>0)){
                 gameScore.splice(justUnder,0,score);
             }
             else {
                 gameScore.unshift(score);
             }
         
-             if (gameScore.length > 10){
+     if (gameScore.length > 10){
             gameScore.shift();
-        }
+      }
         console.log(gameScore);
     }
 
