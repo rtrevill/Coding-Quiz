@@ -13,6 +13,7 @@ var footResult = document.getElementById('result');
 var introText = document.querySelector('#intro-text');
 var startButton = document.getElementById('start-game');
 var endGame = document.querySelector('form');
+var submit = document.getElementById('submit-score');
 console.log(win, lose);
 
 
@@ -148,6 +149,55 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
 }) 
  
 
+function postScore(score){
+    console.log(score.Score);
+    var doubleS = score.Score;
+    var gameScore;
+    if (sessionStorage.getItem("Score")===null){
+       gameScore = [];
+       gameScore.push(score);
+       console.log(gameScore);
+    }
+    else{
+        gameScore = JSON.parse(sessionStorage.getItem("Score"));
+        
+            function topScore(prevScores){
+                return prevScores.Score ===doubleS;   
+             }
+             function moreScore(prevScores){
+                return prevScores.Score >doubleS;
+             }
+                var positionOf = (gameScore.findIndex(topScore));
+                var justUnder = (gameScore.findIndex(moreScore));
+                console.log(positionOf, justUnder);
+            if (moreScore===-1){
+                gameScore.push(score);
+            }
+            else if ((moreScore!==-1)&&(topScore>0)){
+                gameScore.splice(justUnder,0,score);
+            }
+            else {
+                gameScore.unshift(score);
+            }
+        
+             if (gameScore.length > 10){
+            gameScore.shift();
+        }
+        console.log(gameScore);
+    }
+
+    
+    console.log(gameScore);
+    sessionStorage.setItem("Score", JSON.stringify(gameScore));
+}
+
+
+function topScore(prevScores){
+ return prevScores.Score ===doubleS;   
+}
+
+
+
 function endOfGame() {
     H1.innerText = "Game Over!!";
     introText.classList.toggle('invis');
@@ -156,3 +206,18 @@ function endOfGame() {
     var initials = document.getElementById('initials');
     console.log(initials);
 }
+
+submit.addEventListener("click", function(event) {
+    event.preventDefault();
+    var initials = document.getElementById('initials');
+    var gameScore = {
+      Score: win,
+      Initials: initials.value
+    };
+    postScore(gameScore);
+    console.log(gameScore);
+});
+
+// function postScore(score){
+//     console.log(this);
+// }
