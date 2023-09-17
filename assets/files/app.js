@@ -18,9 +18,9 @@ console.log(win, lose);
 
 
 function beforeStart(){
-    H1.innerText = "Welcome to the Quiz Game"
-    introText.innerText = "Try to answer all the questions to get the job. If you run out of time, or score a poor mark you will be expelled ungraciously. Good Luck."
-    startButton.innerText = "Press to start"
+    H1.innerText = "Coding Quiz Challenge"
+    introText.innerText = "Try to answer the following code related questions within the time limit. \n Keep in mind that incorrect answers will penalise your score/time by ten seconds."
+    startButton.innerText = "Start Quiz"
 }
 
 beforeStart()
@@ -30,6 +30,7 @@ var startGame = startButton.addEventListener("click", function(event){
     startButton.classList.add('invis');
     Countdown();
     askQuestions();
+    document.qbox.classList.add("margin")
 
 })
 
@@ -55,47 +56,40 @@ var timerRunning = setInterval(function() {
 
 
 var questions = [
-{   Question:  "What color is yellow?",
-    Answer1:   "Yellow",
-    Answer2:    "Blue",
-    Answer3:    "Red",
-    Answer4:    "Green",
-    Correct:    "Yellow"
+{   Question:  "Commonly used data types DO Not include:",
+    Answer1:   "strings",
+    Answer2:    "booleans",
+    Answer3:    "alerts",
+    Answer4:    "numbers",
+    Correct:    "alerts"
 },
-{   Question:  "Best local bird",
-    Answer1:    "Cockatoo",
-    Answer2:    "Magpie",
-    Answer3:    "King Parrot",
-    Answer4:    "Plover",
-    Correct:    "King Parrot"
+{   Question:  "The condition in an if / else statement is enclosed with ______.",
+    Answer1:    "quotes",
+    Answer2:    "curly brackets",
+    Answer3:    "parenthesis",
+    Answer4:    "square brackets",
+    Correct:    "parenthesis"
 },
-{   Question:  "What is 10 plus 2",
-    Answer1:    "14",
-    Answer2:    "8",
-    Answer3:    "5",
-    Answer4:    "12",
-    Correct:    "12"
+{   Question:  "Arrays in Javascript can be used to store _______.",
+    Answer1:    "numbers and strings",
+    Answer2:    "other arrays",
+    Answer3:    "booleans",
+    Answer4:    "all of the above",
+    Correct:    "all of the above"
 },
-{   Question:  "What sport do the Soceroos play?",
-    Answer1:    "Handball",
-    Answer2:    "Soccer",
-    Answer3:    "Table Tennis",
-    Answer4:    "Diving",
-    Correct:    "Soccer"
+{   Question:  "String values must be enclosed within ______ when being assigned to variables.",
+    Answer1:    "commas",
+    Answer2:    "curly brackets",
+    Answer3:    "quotes",
+    Answer4:    "parenthesis",
+    Correct:    "commas"
 },
-{   Question:  "What do trees do?",
-    Answer1:    "Make oxygen",
-    Answer2:    "Cool and provide shade",
-    Answer3:    "Improve soil",
-    Answer4:    "All of the above",
-    Correct:    "All of the above"
-},
-{   Question:  "Which is the best Die Hard movie?",
-    Answer1:    "Die Hard",
-    Answer2:    "Die Hard 2",
-    Answer3:    "Die Hard With A Vengeance",
-    Answer4:    "Live Free or Die Hard",
-    Correct:    "Die Hard"
+{   Question:  "A very useful tool used during development and debugging for printing content to the debugger is:",
+    Answer1:    "JavaScript",
+    Answer2:    "terminal/bash",
+    Answer3:    "for loops",
+    Answer4:    "console.log",
+    Correct:    "console.log"
 }
 ]
 
