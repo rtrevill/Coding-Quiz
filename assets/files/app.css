@@ -12,8 +12,8 @@ flex-wrap: wrap;
 flex-direction: column;
 justify-content: center;
 align-content: flex-end;
-
-margin-left: 20%;
+margin: auto; 
+/* margin-left: 20%; */
 /* margin-top: auto;
 margin-bottom: auto; */
 
@@ -21,6 +21,12 @@ margin-bottom: auto; */
 h1 {
     margin-bottom: 0;
     font-size: 2.5rem;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: 1.3rem;
 }
 
 ol {
@@ -52,4 +58,25 @@ li {
 
 .invis {
     display: none;
+}
+
+.btn {
+    background-color: rgb(90, 41, 105);
+    font-weight: 700;
+    color: white;
+    width: 150px;
+    height: 40px;   
+    border-radius: 10px;
+}
+
+.btn:hover {
+    background-color: rgb(151, 56, 206);
+}
+
+#start-game {
+    margin: 0 auto;
+}
+
+.margin {
+    margin-left: 20%;
 }
