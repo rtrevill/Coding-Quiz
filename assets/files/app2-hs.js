@@ -6,7 +6,8 @@ console.log(highScoreArray);
 
 for(let i =0; i < highScoreArray.length; i++){
     var idAndScore = document.createElement('li')
-    idAndScore.textContent = revHighScore[i].Initials + " " + revHighScore[i].Score;
+    idAndScore.textContent = "  " + revHighScore[i].Initials + "  -  " + revHighScore[i].Score;
+    idAndScore.classList.add("listItem");
     list.appendChild(idAndScore);
 }
 
