@@ -27,13 +27,14 @@ h1 {
 p {
     text-align: center;
     font-size: 1.3rem;
+    margin: 30px;
 }
 
 ol {
     list-style: decimal inside;
     font-weight: 700;
     font-size: 1.2rem;
-    padding: 0;
+    padding-left: 25%;
 
     }
 .list-item-container {
@@ -54,6 +55,23 @@ ol {
 li {
     margin: 0 20px;
     line-height: 50px;
+}
+
+h2 {
+    border-top: 2px solid gray;
+    font-size: 1.8rem;
+    color: gray;
+    opacity: 0.7;
+}
+
+#highScoreLink {
+    color: rgb(151, 56, 206);
+    margin: 30px;
+    height: 20px;
+}
+
+#highScoreLink:hover {
+    color: pink;
 }
 
 .invis {
@@ -79,4 +97,36 @@ li {
 
 .margin {
     margin-left: 20%;
+}
+
+#hsContainer {
+    width: 40%;
+    margin: 0 auto;
+}
+
+#hs-list {
+    padding: 20px;
+    max-width: 700px;
+}
+
+#hs-list li{
+    margin: 0 auto;
+}
+
+#hs-list li::marker {
+    padding: 10px;
+}
+
+#hs-list li:nth-last-of-type(even) {
+background-color: rgba(140, 80, 180, 0.5);
+}
+
+.flexy {
+    display: flex;
+    justify-content: space-around;
+}
+
+.listItem {
+    list-style-position: inside;
+    padding: 5px 20px;
 }

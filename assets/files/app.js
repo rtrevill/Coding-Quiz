@@ -5,8 +5,8 @@ var qBox = document.querySelector('#quiz-box');
 var listDivs = document.querySelectorAll('.list-item-container')
 var score=0;
 var i= 0;
-var win= 0;
-var lose = 0;
+// var win= 0;
+// var lose = 0;
 var newcounter = 0;
 var timer=75;
 var footResult = document.getElementById('result');
@@ -14,7 +14,7 @@ var introText = document.querySelector('#intro-text');
 var startButton = document.getElementById('start-game');
 var endGame = document.querySelector('form');
 var submit = document.getElementById('submit-score');
-console.log(win, lose);
+// console.log(win, lose);
 
 
 function beforeStart(){
@@ -115,9 +115,9 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
                     console.log("Correct!!");
                     i++;
                     newcounter++;
-                    win++
-                    console.log("Wins: "+win);
-                    console.log("Losses: "+lose);
+                    // win++
+                    // console.log("Wins: "+win);
+                    // console.log("Losses: "+lose);
                     footResult.innerText="Correct!!";
                     // listDivs.style.display='none';
                     askQuestions();
@@ -128,9 +128,9 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
                     console.log("Incorrect!!");
                     i++;
                     newcounter++;
-                    lose++
-                    console.log("Wins: "+win);
-                    console.log("Losses: "+lose);
+                    // lose++
+                    // console.log("Wins: "+win);
+                    // console.log("Losses: "+lose);
                     timer-=15;
                     footResult.innerText="Wrong!!";
                     askQuestions();
@@ -183,6 +183,7 @@ function postScore(score){
     
     console.log(gameScore);
     localStorage.setItem("Score", JSON.stringify(gameScore));
+    window.location.replace("./assets/files/highscores.html")
 }
 
 
@@ -195,7 +196,7 @@ function topScore(prevScores){
 function endOfGame() {
     H1.innerText = "Game Over!!";
     introText.classList.toggle('invis');
-    introText.innerText = ("you scored "+win+" points");
+    introText.innerText = ("you scored "+timer+" points");
     endGame.classList.toggle('invis');
     var initials = document.getElementById('initials');
     console.log(initials);
@@ -205,7 +206,7 @@ submit.addEventListener("click", function(event) {
     event.preventDefault();
     var initials = document.getElementById('initials');
     var gameScore = {
-      Score: win,
+      Score: timer,
       Initials: initials.value
     };
     postScore(gameScore);
