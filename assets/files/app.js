@@ -4,26 +4,19 @@ var H1 = document.querySelector('h1');
 var questionText = document.querySelector('h2');
 var qBox = document.querySelector('#quiz-box');
 var listDivs = document.querySelectorAll('.list-item-container')
-var score=0;
 var qNum= 0;
-// var win= 0;
-// var lose = 0;
-var newcounter = 0;
 var timer=75;
 var footResult = document.getElementById('result');
 var introText = document.querySelector('#intro-text');
 var startButton = document.getElementById('start-game');
 var endGame = document.querySelector('form');
 var submit = document.getElementById('submit-score');
-// console.log(win, lose);
 
 
 function beforeStart(){
-
     H1.innerText = "Coding Quiz Challenge"
     questionText.classList.toggle('invis');
     introText.innerText = "Try to answer the following code related questions within the time limit. \n Keep in mind that incorrect answers will penalise your score/time by ten seconds."
-    startButton.innerText = "Start Quiz"
 }
 
 beforeStart()
@@ -33,8 +26,6 @@ var startGame = startButton.addEventListener("click", function(event){
     startButton.classList.add('invis');
     Countdown();
     askQuestions();
-    document.qbox.classList.add("margin")
-
 })
 
 function Countdown(){
@@ -44,8 +35,7 @@ var timerRunning = setInterval(function() {
     for (var m=0; m<4; m++){
             listDivs[m].classList.remove('invis');
         }
-    if ((timer<=0)||(newcounter===questions.length)){
-        console.log("Newcounter: "+newcounter);
+    if ((timer<=0)||(qNum===questions.length)){
         clearInterval(timerRunning);
         for (var m=0; m<4; m++){
             listDivs[m].classList.add('invis');
@@ -54,9 +44,6 @@ var timerRunning = setInterval(function() {
     }
 }, 1000);
 }
-
-
-
 
 var questions = [
 {   Question:  "Commonly used data types DO Not include:",
@@ -99,113 +86,43 @@ var questions = [
 function askQuestions(){
     H1.classList.add('invis');
     questionText.classList.remove('invis');    
-    questionText.innerHTML = questions[qNum].Question;
-    answers[0].innerHTML = questions[qNum].Answer1;
-    answers[1].innerHTML = questions[qNum].Answer2;
-    answers[2].innerHTML = questions[qNum].Answer3;
-    answers[3].innerHTML = questions[qNum].Answer4;
+    questionText.innerText = questions[qNum].Question;
+    answers[0].innerText = questions[qNum].Answer1;
+    answers[1].innerText = questions[qNum].Answer2;
+    answers[2].innerText = questions[qNum].Answer3;
+    answers[3].innerText = questions[qNum].Answer4;
 };
-
-
 
 
 var usersChoice = qBox.addEventListener("click", function listener(event){
     var correctAnswer = questions[qNum].Correct;   
-    console.log(correctAnswer);
     element = event.target;
-    console.log(qNum); 
-            if (element.matches('li')&&(timer>0)&&(newcounter<questions.length)){
+            if (element.matches('li')&&(timer>0)&&(qNum<questions.length)){
                 if (element.textContent===correctAnswer){
-                    console.log("Correct!!");
                     qNum++;
-                    newcounter++;
-                    // win++
-                    // console.log("Wins: "+win);
-                    // console.log("Losses: "+lose);
                     footResult.innerText="Correct!";
-                    // listDivs.style.display='none';
                     askQuestions();
                     return;
-                        
                     }
                 else if (element.textContent!==correctAnswer){
-                    console.log("Incorrect!!");
                     qNum++;
-                    newcounter++;
-                    // lose++
-                    // console.log("Wins: "+win);
-                    // console.log("Losses: "+lose);
                     timer-=15;
                     footResult.innerText="Wrong!";
                     askQuestions();
                     return;
                     }
-                    
-               
             }
-        
 }) 
- 
-
-function postScore(score){
-    console.log(score.Score);
-    var doubleS = score.Score;
-    var gameScore;
-    if (localStorage.getItem("Score")===null){
-       gameScore = [];
-       gameScore.push(score);
-       console.log(gameScore);
-    }
-    else{
-        gameScore = JSON.parse(localStorage.getItem("Score"));
-        
-            function topScore(prevScores){
-                return prevScores.Score > doubleS;   
-             }
-             function moreScore(prevScores){
-                return prevScores.Score === doubleS;
-             }
-                var positionOf = (gameScore.findIndex(topScore));
-                var justUnder = (gameScore.findIndex(moreScore));
-                console.log(positionOf, justUnder);
-            if (positionOf===-1){
-                gameScore.push(score);
-            }
-            else if ((positionOf!==-1)){
-                gameScore.splice(positionOf,0,score);
-            }
-            else {
-                gameScore.unshift(score);
-            }
-            // &&(justUnder>-1)
-     if (gameScore.length > 10){
-            gameScore.shift();
-      }
-        console.log(gameScore);
-    }
-
-    
-    console.log(gameScore);
-    localStorage.setItem("Score", JSON.stringify(gameScore));
-    window.location.replace("./assets/files/highscores.html");
-}
-
-
-function topScore(prevScores){
- return prevScores.Score ===doubleS;   
-}
-
 
 
 function endOfGame() {
     H1.classList.remove('invis');
-    questionText.classList.add('invis');
     H1.innerText = "All done!";
+    questionText.classList.add('invis');
     introText.classList.toggle('invis');
     introText.innerText = ("Your final score is "+timer+".");
+    introText.classList.add('texty2');
     endGame.classList.toggle('invis');
-    var initials = document.getElementById('initials');
-    console.log(initials);
 }
 
 submit.addEventListener("click", function(event) {
@@ -216,9 +133,36 @@ submit.addEventListener("click", function(event) {
       Initials: initials.value
     };
     postScore(gameScore);
-    console.log(gameScore);
 });
 
-// function postScore(score){
-//     console.log(this);
-// }
+
+function postScore(score){
+    var doubleS = score.Score;
+    var gameScore;
+    if (localStorage.getItem("Score")===null){
+       gameScore = [];
+       gameScore.push(score);
+    }
+    else{
+        gameScore = JSON.parse(localStorage.getItem("Score"));
+        
+            function topScore(prevScores){
+                return prevScores.Score > doubleS;   
+             }
+                var positionOf = (gameScore.findIndex(topScore));
+            if (positionOf===-1){
+                gameScore.push(score);
+            }
+            else {
+                gameScore.splice(positionOf,0,score);
+            }
+     if (gameScore.length > 10){
+            gameScore.shift();
+      }
+    }
+    localStorage.setItem("Score", JSON.stringify(gameScore));
+    window.location.replace("./assets/files/highscores.html");
+}
+
+
+
