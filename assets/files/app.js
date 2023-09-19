@@ -1,10 +1,11 @@
 var timeEl = document.getElementById('timer');
 var answers = document.querySelectorAll("#options li");
 var H1 = document.querySelector('h1');
+var questionText = document.querySelector('h2');
 var qBox = document.querySelector('#quiz-box');
 var listDivs = document.querySelectorAll('.list-item-container')
 var score=0;
-var i= 0;
+var qNum= 0;
 // var win= 0;
 // var lose = 0;
 var newcounter = 0;
@@ -18,7 +19,9 @@ var submit = document.getElementById('submit-score');
 
 
 function beforeStart(){
+
     H1.innerText = "Coding Quiz Challenge"
+    questionText.classList.toggle('invis');
     introText.innerText = "Try to answer the following code related questions within the time limit. \n Keep in mind that incorrect answers will penalise your score/time by ten seconds."
     startButton.innerText = "Start Quiz"
 }
@@ -94,31 +97,32 @@ var questions = [
 ]
 
 function askQuestions(){
-        
-    H1.innerHTML = questions[i].Question;
-    answers[0].innerHTML = questions[i].Answer1;
-    answers[1].innerHTML = questions[i].Answer2;
-    answers[2].innerHTML = questions[i].Answer3;
-    answers[3].innerHTML = questions[i].Answer4;
+    H1.classList.add('invis');
+    questionText.classList.remove('invis');    
+    questionText.innerHTML = questions[qNum].Question;
+    answers[0].innerHTML = questions[qNum].Answer1;
+    answers[1].innerHTML = questions[qNum].Answer2;
+    answers[2].innerHTML = questions[qNum].Answer3;
+    answers[3].innerHTML = questions[qNum].Answer4;
 };
 
 
 
 
 var usersChoice = qBox.addEventListener("click", function listener(event){
-    var correctAnswer = questions[i].Correct;   
+    var correctAnswer = questions[qNum].Correct;   
     console.log(correctAnswer);
     element = event.target;
-    console.log(i); 
+    console.log(qNum); 
             if (element.matches('li')&&(timer>0)&&(newcounter<questions.length)){
                 if (element.textContent===correctAnswer){
                     console.log("Correct!!");
-                    i++;
+                    qNum++;
                     newcounter++;
                     // win++
                     // console.log("Wins: "+win);
                     // console.log("Losses: "+lose);
-                    footResult.innerText="Correct!!";
+                    footResult.innerText="Correct!";
                     // listDivs.style.display='none';
                     askQuestions();
                     return;
@@ -126,13 +130,13 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
                     }
                 else if (element.textContent!==correctAnswer){
                     console.log("Incorrect!!");
-                    i++;
+                    qNum++;
                     newcounter++;
                     // lose++
                     // console.log("Wins: "+win);
                     // console.log("Losses: "+lose);
                     timer-=15;
-                    footResult.innerText="Wrong!!";
+                    footResult.innerText="Wrong!";
                     askQuestions();
                     return;
                     }
@@ -183,7 +187,7 @@ function postScore(score){
     
     console.log(gameScore);
     localStorage.setItem("Score", JSON.stringify(gameScore));
-    window.location.replace("./assets/files/highscores.html")
+    window.location.replace("./assets/files/highscores.html");
 }
 
 
@@ -194,6 +198,8 @@ function topScore(prevScores){
 
 
 function endOfGame() {
+    H1.classList.remove('invis');
+    questionText.classList.add('invis');
     H1.innerText = "Game Over!!";
     introText.classList.toggle('invis');
     introText.innerText = ("you scored "+timer+" points");

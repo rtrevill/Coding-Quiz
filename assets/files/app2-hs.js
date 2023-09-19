@@ -1,4 +1,6 @@
 var list = document.getElementById('hs-list');
+var returnButton = document.getElementById('rButt');
+var resetScores = document.querySelector('#reset-score');
 
 var highScoreArray = JSON.parse(localStorage.getItem("Score"));
 var revHighScore = highScoreArray.reverse();
@@ -11,3 +13,15 @@ for(let i =0; i < highScoreArray.length; i++){
     list.appendChild(idAndScore);
 }
 
+returnButton.addEventListener('click', function(event){
+    event.preventDefault();
+    window.location.replace("file:///C:/Users/Richard/Documents/Monash%20Bootcamp%20documents/Github/Coding-Quiz/index.html")
+})
+
+resetScores.addEventListener('click', function(event){
+    event.preventDefault();
+    var highScores = JSON.parse(localStorage.getItem("Score"))
+    highScores = [];
+    localStorage.setItem("Score", JSON.stringify(highScores));
+    location.reload();
+})
