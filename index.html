@@ -7,18 +7,19 @@
     <link rel="stylesheet" href="./assets/files/app.css">
 </head>
 <body>
-    <div id="container">
+    <div id="container" class="main-container">
         <a href="./assets/files/highscores.html" id="highScoreLink">View High Scores</a>
         <div id="quiz-box">
             <h1>dssdhsdhfsldjkhsldfjslkd</h1>
             <h2></h2>
-            <p id="intro-text"></p>
+            <p id="intro-text" class="texty"></p>
             <button id="start-game" class = "btn"></button>
             <form action="" class="invis">
-                <label for="initials">Enter Initials: </label>
-                <!-- <input type="text" id="initials"> -->
-                <textarea id="initials" cols="20" rows="1"></textarea>
-                <button id="submit-score">Submit</button>
+                <label for="initials" class="texty">Enter Initials: </label>
+                <input type="text" id="initials">
+                <!-- <textarea id="initials" cols="20" rows="1"></textarea> -->
+                
+                <button id="submit-score" class="sml-btn" >Submit</button>
             </form>
             <ol id="options">
                 <div class="list-item-container invis">
@@ -36,7 +37,7 @@
             </ol>
             <h3 id="result"></h3>
         </div>
-        <p id="timer"></p>
+        <p id="timer" class="texty"></p>
     </div>
     <script src="./assets/files/app.js"></script>
 </body>

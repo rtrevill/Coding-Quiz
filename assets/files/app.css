@@ -4,7 +4,9 @@
     border: 3px solid black;
     height: 700px;
     margin: 10px auto;
+    justify-content: space-between;
 }
+
 
 #options {
 margin-left: 0;
@@ -38,7 +40,7 @@ h2 {
     text-align: left;
 }
 
-p {
+.texty {
     text-align: center;
     font-size: 1.3rem;
     margin: 30px;
@@ -102,8 +104,27 @@ h3 {
     border-radius: 10px;
 }
 
+.sml-btn {
+    background-color: rgb(90, 41, 105);
+    font-weight: 700;
+    color: white;
+    width: 110px;
+    height: 30px;   
+    border-radius: 10px;
+
+}
+
 .btn:hover {
     background-color: rgb(151, 56, 206);
+}
+
+.sml-btn:hover {
+    background-color: rgb(151, 56, 206);
+}
+
+label.texty {
+    margin-right: 5px;
+
 }
 
 #start-game {
@@ -114,9 +135,21 @@ h3 {
     margin-left: 20%;
 }
 
+#submit-score{
+margin-left: 13px;
+
+}
+
+#initials {
+    height: 25px;
+
+}
+
 #hsContainer {
-    width: 40%;
     margin: 0 auto;
+    width: 90%;
+    border: 3px solid black;
+    height: 700px; 
 }
 
 #hs-list {
@@ -138,7 +171,9 @@ background-color: rgba(140, 80, 180, 0.5);
 
 .flexy {
     display: flex;
+    width: 70%;
     justify-content: space-around;
+    margin: 0 auto;
 }
 
 .listItem {
