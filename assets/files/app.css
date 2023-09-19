@@ -1,8 +1,6 @@
 :root {
-
     font-family: sans-serif;
 }
-
 
 #container {
     display: flex;
@@ -12,7 +10,6 @@
     margin: 10px auto;
     justify-content: space-between;
 }
-
 
 #options {
 margin-left: 0;

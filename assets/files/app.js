@@ -12,15 +12,15 @@ var startButton = document.getElementById('start-game');
 var endGame = document.querySelector('form');
 var submit = document.getElementById('submit-score');
 
-
+//Opening screen
 function beforeStart(){
     H1.innerText = "Coding Quiz Challenge"
     questionText.classList.toggle('invis');
-    introText.innerText = "Try to answer the following code related questions within the time limit. \n Keep in mind that incorrect answers will penalise your score/time by ten seconds."
+    introText.innerText = "Try to answer the following code related questions within the time limit. \n Keep in mind that incorrect answers will penalise your score/time by fifteen seconds."
 }
 
 beforeStart()
-
+//Starts the game when the start button is clicked
 var startGame = startButton.addEventListener("click", function(event){
     introText.classList.add('invis');
     startButton.classList.add('invis');
@@ -28,6 +28,7 @@ var startGame = startButton.addEventListener("click", function(event){
     askQuestions();
 })
 
+//Starts the timer, and makes the options for the game visible. Also removes the options when timer runs out.
 function Countdown(){
 var timerRunning = setInterval(function() {
     timer--
@@ -45,6 +46,7 @@ var timerRunning = setInterval(function() {
 }, 1000);
 }
 
+//Setting the questions and answers in an array
 var questions = [
 {   Question:  "Commonly used data types DO Not include:",
     Answer1:   "strings",
@@ -83,6 +85,7 @@ var questions = [
 }
 ]
 
+//Prints on screen the questions and answers each round
 function askQuestions(){
     H1.classList.add('invis');
     questionText.classList.remove('invis');    
@@ -93,7 +96,7 @@ function askQuestions(){
     answers[3].innerText = questions[qNum].Answer4;
 };
 
-
+//Checks each choice made by user for validity, and whether correct. Subtracts time if incorrect.
 var usersChoice = qBox.addEventListener("click", function listener(event){
     var correctAnswer = questions[qNum].Correct;   
     element = event.target;
@@ -114,7 +117,7 @@ var usersChoice = qBox.addEventListener("click", function listener(event){
             }
 }) 
 
-
+//displays end game screen with score. Displays form for user to enter initials.
 function endOfGame() {
     H1.classList.remove('invis');
     H1.innerText = "All done!";
@@ -125,6 +128,7 @@ function endOfGame() {
     endGame.classList.toggle('invis');
 }
 
+//Creates object with user initials and score.
 submit.addEventListener("click", function(event) {
     event.preventDefault();
     var initials = document.getElementById('initials');
@@ -135,7 +139,7 @@ submit.addEventListener("click", function(event) {
     postScore(gameScore);
 });
 
-
+//Checks if any scores are in local storage. will add latest score in ranking order, trim list to max 10 entries, and store score list in local storage.
 function postScore(score){
     var doubleS = score.Score;
     var gameScore;
