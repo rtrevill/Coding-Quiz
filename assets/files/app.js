@@ -200,9 +200,9 @@ function topScore(prevScores){
 function endOfGame() {
     H1.classList.remove('invis');
     questionText.classList.add('invis');
-    H1.innerText = "Game Over!!";
+    H1.innerText = "All done!";
     introText.classList.toggle('invis');
-    introText.innerText = ("you scored "+timer+" points");
+    introText.innerText = ("Your final score is "+timer+".");
     endGame.classList.toggle('invis');
     var initials = document.getElementById('initials');
     console.log(initials);
