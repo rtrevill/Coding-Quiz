@@ -6,22 +6,36 @@
     margin: 10px auto;
 }
 
+#options {
+margin-left: 0;
+
+}
+
 #quiz-box {
 display: flex;
 flex-wrap: wrap;
 flex-direction: column;
 justify-content: center;
-align-content: flex-end;
-margin: auto; 
-/* margin-left: 20%; */
+align-content: flex-start;
+/* margin: auto;  */
+margin-left: 10%;
+margin-right: 10%;
 /* margin-top: auto;
 margin-bottom: auto; */
+
+
 
 }
 h1 {
     margin-bottom: 0;
     font-size: 2.5rem;
     text-align: center;
+}
+
+h2 {
+    margin-bottom: 0;
+    font-size: 2.5rem;
+    text-align: left;
 }
 
 p {
@@ -34,7 +48,7 @@ ol {
     list-style: decimal inside;
     font-weight: 700;
     font-size: 1.2rem;
-    padding-left: 25%;
+    margin: 0 auto;
 
     }
 .list-item-container {
@@ -57,7 +71,7 @@ li {
     line-height: 50px;
 }
 
-h2 {
+h3 {
     border-top: 2px solid gray;
     font-size: 1.8rem;
     color: gray;
@@ -68,6 +82,7 @@ h2 {
     color: rgb(151, 56, 206);
     margin: 30px;
     height: 20px;
+    min-width: 117px;
 }
 
 #highScoreLink:hover {
