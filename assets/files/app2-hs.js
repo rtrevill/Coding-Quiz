@@ -14,7 +14,7 @@ for(let i =0; i < highScoreArray.length; i++){
 
 returnButton.addEventListener('click', function(event){
     event.preventDefault();
-    window.location.replace("http://127.0.0.1:5500/Github/Coding-Quiz/index.html")
+    window.location.replace("https://rtrevill.github.io/Coding-Quiz/")
 })
 
 resetScores.addEventListener('click', function(event){
